@@ -106,7 +106,7 @@ class Buckaroo3Admin
                     'BUCKAROO_PGST_PAYMENT',
                     serialize(Tools::getValue('BUCKAROO_PGST_PAYMENT'))
                 );
-                
+
                 Configuration::updateValue(
                     'BUCKAROO_PGBY_PAYMENT',
                     serialize(Tools::getValue('BUCKAROO_PGBY_PAYMENT'))
@@ -121,6 +121,7 @@ class Buckaroo3Admin
                 Configuration::updateValue('BUCKAROO_IDIN_TEST', Tools::getValue('BUCKAROO_IDIN_TEST'));
                 Configuration::updateValue('BUCKAROO_IDIN_MODE', Tools::getValue('BUCKAROO_IDIN_MODE'));
                 Configuration::updateValue('BUCKAROO_PAYPAL_ENABLED', Tools::getValue('BUCKAROO_PAYPAL_ENABLED'));
+                Configuration::updateValue('BUCKAROO_PAYPAL_SELLERPROTECTION', Tools::getValue('BUCKAROO_PAYPAL_SELLERPROTECTION'));
                 Configuration::updateValue('BUCKAROO_PAYPAL_TEST', Tools::getValue('BUCKAROO_PAYPAL_TEST'));
                 Configuration::updateValue('BUCKAROO_PAYPAL_LABEL', Tools::getValue('BUCKAROO_PAYPAL_LABEL'));
                 Configuration::updateValue(
@@ -391,6 +392,7 @@ class Buckaroo3Admin
         $fields_value['BUCKAROO_IDIN_TEST']              = Configuration::get('BUCKAROO_IDIN_TEST');
         $fields_value['BUCKAROO_IDIN_MODE']              = Configuration::get('BUCKAROO_IDIN_MODE');
         $fields_value['BUCKAROO_PAYPAL_ENABLED']           = Configuration::get('BUCKAROO_PAYPAL_ENABLED');
+        $fields_value['BUCKAROO_PAYPAL_SELLERPROTECTION']  = Configuration::get('BUCKAROO_PAYPAL_SELLERPROTECTION');
         $fields_value['BUCKAROO_PAYPAL_TEST']              = Configuration::get('BUCKAROO_PAYPAL_TEST');
         $fields_value['BUCKAROO_PAYPAL_LABEL']              = Configuration::get('BUCKAROO_PAYPAL_LABEL');
         $fields_value['BUCKAROO_BUCKAROOPAYPAL_FEE']       = Configuration::get('BUCKAROO_BUCKAROOPAYPAL_FEE');
@@ -659,7 +661,7 @@ class Buckaroo3Admin
 
         $fields_form[$i++] = array(
             'legend'  => $this->module->l('iDIN verification Settings'),
-            'name'    => 'PAYPAL',
+            'name'    => 'IDIN',
             'test'    => Configuration::get('BUCKAROO_IDIN_TEST'),
             'enabled' => Configuration::get('BUCKAROO_IDIN_ENABLED'),
             'input'   => array(
@@ -733,6 +735,22 @@ class Buckaroo3Admin
                 array(
                     'type' => 'mode',
                     'name' => 'BUCKAROO_PAYPAL_TEST',
+                ),
+                array(
+                    'type'      => 'select',
+                    'name'      => 'BUCKAROO_PAYPAL_SELLERPROTECTION',
+                    'label'     => $this->module->l('Enable Paypal seller protection'),
+                    'description' => $this->module->l('Send shipping address information to Paypal'),
+                    'options'   => array(
+                        array(
+                            'text'  => $this->module->l('No'),
+                            'value' => '0',
+                        ),
+                        array(
+                            'text'  => $this->module->l('Yes'),
+                            'value' => '1',
+                        ),
+                    ),
                 ),
                 array(
                     'type'     => 'text',

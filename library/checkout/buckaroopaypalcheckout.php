@@ -26,13 +26,37 @@ class BuckarooPayPalCheckout extends Checkout
     final public function setCheckout()
     {
         parent::setCheckout();
+        $this->payment_request->sellerProtectionEnabled = boolval(Configuration::get('BUCKAROO_PAYPAL_SELLERPROTECTION'));
+        if ($this->payment_request->sellerProtectionEnabled){
+            $address = $this->shipping_address;
+            if (empty($address)){
+                $address = $this->invoice_address;
+            }
+            if (empty($address)){
+                $this->payment_request->sellerProtectionEnabled = false;
+                return;
+            }
+            $this->payment_request->name  = $address->firstname.' '.$address->lastname;
+            $this->payment_request->address1 = $address->address1;
+            $this->payment_request->address2 = $address->address2;
+            $this->payment_request->zipPostal = $address->postcode;
+            $this->payment_request->city = $address->city;
+            if (!empty($address->id_state)){
+                $state = new State($address->id_state);
+                $this->payment_request->stateProvince = $state->iso_code;
+            }
+            else {
+                $this->payment_request->stateProvince = '';
+            }
+            $this->payment_request->countryCode = \Country::getIsoById($address->id_country);
+        }
     }
 
     public function startPayment()
     {
         $this->payment_response = $this->payment_request->pay($this->customVars);
     }
-    
+
     public function isRedirectRequired()
     {
         return true;
