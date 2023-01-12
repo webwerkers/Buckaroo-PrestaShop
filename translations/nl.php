@@ -54,6 +54,8 @@ $_MODULE['<{buckaroo3}prestashop>buckaroo3_admin_629d2de15d5227dd5ab876062654705
 $_MODULE['<{buckaroo3}prestashop>buckaroo3_admin_cf565402d32b79d33f626252949a6941'] = 'Configuratie opslaan';
 $_MODULE['<{buckaroo3}prestashop>buckaroo3_admin_fa2ba3c63ab024db2b5ad7601e7a4b43'] = 'Ververs de module';
 $_MODULE['<{buckaroo3}prestashop>buckaroo3_admin_802487810607dad9dc2c5880e2350da6'] = 'PayPal instellingen';
+$_MODULE['<{buckaroo3}prestashop>buckaroo3_admin_68df2d41b6e702a4382ef59d02164f2d'] = 'PayPal verkopersbescherming inschakelen';
+$_MODULE['<{buckaroo3}prestashop>buckaroo3_admin_65ab52184b74febebe77be5313eb4f55'] = 'Verzendadres gegevens worden aan PayPal doorgegeven';
 $_MODULE['<{buckaroo3}prestashop>buckaroo3_admin_b6ae76efc0871e15763740684b45203f'] = 'Gebruik notificiatie service';
 $_MODULE['<{buckaroo3}prestashop>buckaroo3_admin_bafd7322c6e97d25b6299b5d6fe8920b'] = 'Nee';
 $_MODULE['<{buckaroo3}prestashop>buckaroo3_admin_93cba07454f06a4a960172bbd6e2a435'] = 'Ja';
